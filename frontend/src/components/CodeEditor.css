@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+
+.editor-container {
+  padding: 0 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+}
+
+.editor-heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #FFD700;
+}
+
+.input-box {
+  width: 100%;
+  min-height: 55px;
+  max-height: 75px;
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #FFD700;
+  border-radius: 4px;
+  background-color: #0a0a0a;
+  color: #ffffff;
+}
+
+.run-button {
+  margin-top: 10px;
+  padding: 10px 16px;
+  font-size: 16px;
+  background-color: #FFD700;
+  border: none;
+  color: #000000;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.run-button:hover {
+  background-color: #FFA500;
+}
+
+.output-heading {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFD700;
+}
+
+.output-box {
+  background-color: #0a0a0a;
+  color: #ffffff;
+  min-height: 55px;
+  max-height: 80px;
+  padding: 12px;
+  border: 1px solid #333333;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  overflow-y: scroll;
+}

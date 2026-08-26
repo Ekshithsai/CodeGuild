@@ -1,0 +1,93 @@
+.problem-card {
+  border: 1px solid var(--highlight);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 10px 0;
+  background-color: var(--secondary-background);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.problem-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.15);
+  transform: translateY(-2px);
+  border-color: var(--primary-accent);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--text-primary); /* Ensures text is visible */
+  margin-bottom: 8px;
+}
+
+.problem-id {
+  color: var(--text-secondary);
+}
+
+.problem-title {
+  flex-grow: 1;
+  color: var(--primary-accent);
+  font-weight: 600;
+}
+
+.locked-icon {
+  color: var(--error);
+  filter: brightness(1.2); /* Makes lock icon more visible */
+}
+
+.card-info {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  color: var(--text-primary); /* Changed from text-secondary to primary */
+}
+
+.platform {
+  color: var(--secondary-accent);
+  font-weight: 500;
+}
+
+/* Updated difficulty colors to be more vibrant */
+.difficulty[style*="green"] {
+  color: #00ff88 !important; /* Brighter green for Easy */
+}
+.difficulty[style*="orange"] {
+  color: #ffaa00 !important; /* More vibrant orange for Medium */
+}
+.difficulty[style*="red"] {
+  color: #ff5555 !important; /* Brighter red for Hard */
+}
+
+.accuracy {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.tags {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  display: inline-block;
+  background-color: var(--primary-background);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  border: 1px solid var(--highlight);
+  transition: all 0.2s ease;
+}
+
+.tag:hover {
+  background-color: var(--highlight);
+  color: white;
+}
