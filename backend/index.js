@@ -11,6 +11,7 @@ const solutionsRoute = require("./routes/Solutions.js");
 const profileRoute = require("./routes/Profile.js");
 const socketHandler = require("./socketHandler");
 const bookmarksRoute = require("./routes/Bookmarks.js");
+const executeRoute = require("./routes/Execute.js");
 const User = require("./models/UserModel.js");
 
 // Helper: escape special regex characters to prevent injection
@@ -48,6 +49,7 @@ app.use("/", loginRoute);
 app.use("/api/solutions", solutionsRoute);
 app.use("/user", profileRoute);
 app.use("/bookmarks", bookmarksRoute);
+app.use("/api", executeRoute);
 app.get("/users/:username", async (req, res) => {
   const { username } = req.params;
   if (!username || username.trim() === "") {
@@ -81,7 +83,7 @@ socketHandler(io);
 
 app.get("/", (req, res) => {
   res.json({
-    name: "CodeHarbor API",
+    name: "Code Guild API",
     status: "running",
     frontend: "http://localhost:3000",
   });

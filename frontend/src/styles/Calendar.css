@@ -1,445 +1,357 @@
+/* ═══════════════════════════════════════════════════════
+   Code Guild – Calendar Styles
+   ═══════════════════════════════════════════════════════ */
+
 .calendar-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 90vh;
-    padding: 20px;
-    background: #000000;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 80px);
+  padding: 1.5rem;
+  background: var(--primary-background);
 }
 
 .calendar-wrapper {
-    background: #111111;
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 90vw;
-    max-width: 1200px;
-    height: 70vh;
-    border: 1px solid #333;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+  background: var(--secondary-background);
+  border-radius: var(--radius-lg);
+  
+  padding: 1.2rem;
+  width: 90vw;
+  max-width: 1200px;
+  height: 70vh;
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }
 
 /* Left side - Calendar */
 .calendar-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
 
 .calendar-header {
-    margin-bottom: 20px;
-    text-align: center;
-    flex-shrink: 0;
+  margin-bottom: 1rem;
+  text-align: center;
+  flex-shrink: 0;
 }
 
 .navigation {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .nav-button {
-    background: #000000;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #444;
+  background: var(--primary-background);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: var(--transition-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-button:hover {
-    background: #1a1a00;
-    border-color: #FFD700;
-}
-
-.nav-button.year-nav {
-    background: #000000;
-    border-color: #3a3a3a;
-}
-
-.nav-button.year-nav:hover {
-    background: #1a1a00;
-    border-color: #FFD700;
+  border-color: var(--primary-accent);
+  color: var(--primary-accent);
+  background: rgba(255, 107, 0, 0.05);
 }
 
 .month-year {
-    font-size: 20px;
-    font-weight: 600;
-    color: #ffffff;
-    margin: 0;
-    min-width: 180px;
-    text-align: center;
-    letter-spacing: 0.5px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  min-width: 180px;
+  text-align: center;
+  letter-spacing: -0.3px;
 }
 
 .calendar-grid {
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid #333;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .days-header {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    background: #000000;
-    flex-shrink: 0;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: var(--primary-background);
+  flex-shrink: 0;
 }
 
 .day-header {
-    padding: 12px 8px;
-    text-align: center;
-    font-weight: 600;
-    color: #ccc;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-right: 1px solid #333;
+  padding: 0.6rem 0.3rem;
+  text-align: center;
+  font-weight: 700;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-right: 1px solid var(--border-subtle);
 }
 
 .day-header:last-child {
-    border-right: none;
+  border-right: none;
 }
 
 .days-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    background: #000000;
-    flex: 1;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  background: var(--primary-background);
+  flex: 1;
 }
 
 .calendar-day {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-right: 1px solid #333;
-    border-bottom: 1px solid #333;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    position: relative;
-    color: #fff;
-    background: #000000;
-    flex-direction: column;
-    gap: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: var(--transition-fast);
+  position: relative;
+  color: var(--text-secondary);
+  background: var(--primary-background);
+  flex-direction: column;
+  gap: 2px;
 }
 
 .calendar-day:nth-child(7n) {
-    border-right: none;
+  border-right: none;
 }
 
-.calendar-day:hover {
-    background: #1a1a00;
-    color: #fff;
+.calendar-day:hover:not(.empty) {
+  background: rgba(255, 107, 0, 0.06);
+  color: var(--text-primary);
 }
 
 .calendar-day.empty {
-    cursor: default;
-    background: #0a0a0a;
-    color: #555;
+  cursor: default;
+  background: rgba(10, 10, 10, 0.5);
+  color: var(--text-muted);
+  opacity: 0.4;
 }
 
-.calendar-day.empty:hover {
-    background: #0a0a0a;
-}
-
-/* Single color for all contests - removed platform-specific colors */
 .calendar-day.has-contest {
-    background: #FFD700;
-    color: #000000;
-    font-weight: 600;
-    position: relative;
+  background: var(--primary-accent);
+  color: #fff;
+  font-weight: 700;
 }
 
 .calendar-day.has-contest:hover {
-    background: #FFA500;
+  background: var(--primary-accent-light);
 }
 
 .day-number {
-    font-size: 13px;
-    font-weight: 500;
+  font-size: 0.82rem;
+  font-weight: 500;
 }
 
 .contest-indicator {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-    position: absolute;
-    bottom: 2px;
-    right: 2px;
-}
-
-.contest-dot {
-    width: 5px;
-    height: 5px;
-    background: #FFD700;
-    border-radius: 50%;
-    font-size: 0;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
 }
 
 .contest-count {
-    font-size: 8px;
-    background: #ff4444;
-    color: white;
-    border-radius: 50%;
-    width: 12px;
-    height: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    border: 1px solid #fff;
+  font-size: 7px;
+  background: #EF4444;
+  color: white;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border: 1px solid var(--primary-accent);
 }
 
 /* Right side - Contests */
 .contests-sidebar {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background: #000000;
-    border-radius: 8px;
-    border: 1px solid #333;
-    padding: 15px;
-    overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--primary-background);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  padding: 1rem;
+  overflow: hidden;
 }
 
 .contests-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .contests-section h3 {
-    color: #ffffff;
-    margin-bottom: 15px;
-    font-size: 16px;
-    font-weight: 600;
-    text-align: center;
-    border-bottom: 2px solid #FFD700;
-    padding-bottom: 8px;
-    flex-shrink: 0;
+  color: var(--text-primary);
+  margin-bottom: 0.8rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 2px solid var(--primary-accent);
+  padding-bottom: 0.5rem;
+  flex-shrink: 0;
 }
 
 .contests-list {
-    flex: 1;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding-right: 5px;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding-right: 0.3rem;
 }
 
 .contest-item {
-    background: #000000;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #333;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
+  background: var(--secondary-background);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  transition: var(--transition-normal);
+  flex-shrink: 0;
 }
 
 .contest-item:hover {
-    border-color: #FFA500;
-    background: #111111;
+  border-color: rgba(255, 107, 0, 0.3);
 }
 
 .contest-item h4 {
-    color: #FFD700;
-    margin-bottom: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 5px;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 
 .contest-item p {
-    margin: 6px 0;
-    color: #ccc;
-    font-size: 12px;
-    line-height: 1.4;
+  margin: 0.3rem 0;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  line-height: 1.4;
 }
 
 .label {
-    font-weight: 600;
-    color: #fff;
+  font-weight: 600;
+  color: var(--text-secondary);
 }
 
-/* Single color for all platform badges */
 .platform-badge {
-    background: #FFD700;
-    color: #000000;
-    color: white;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 10px;
-    font-weight: bold;
-    margin-right: 8px;
-    text-transform: uppercase;
+  background: var(--primary-accent);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .contest-link {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 6px 12px;
-    background: #FFD700;
-    color: #000000;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    border: 1px solid #FFD700;
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.35rem 0.7rem;
+  background: var(--primary-accent);
+  color: #fff;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  font-weight: 600;
+  transition: var(--transition-normal);
 }
 
 .contest-link:hover {
-    background: #FFA500;
-    border-color: #FFA500;
+  background: var(--primary-accent-light);
 }
 
 .no-contests {
-    text-align: center;
-    color: #ccc;
-    font-size: 12px;
-    padding: 20px;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.loading {
-    text-align: center;
-    color: #fff;
-    padding: 40px;
-}
-
-.loading-spinner {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: #00D4FF;
-}
-
-.error-message {
-    background: #cc0000;
-    color: white;
-    padding: 12px;
-    border-radius: 6px;
-    margin-top: 15px;
-    text-align: center;
-    font-size: 12px;
-    border: 1px solid #aa0000;
-}
-
-/* Custom scrollbar for contests list */
+/* Scrollbar */
 .contests-list::-webkit-scrollbar {
-    width: 6px;
+  width: 4px;
 }
 
 .contests-list::-webkit-scrollbar-track {
-    background: #000000;
-    border-radius: 3px;
+  background: var(--primary-background);
 }
 
 .contests-list::-webkit-scrollbar-thumb {
-    background: #FFD700;
-    border-radius: 3px;
+  background: var(--primary-accent);
+  border-radius: 2px;
 }
 
-.contests-list::-webkit-scrollbar-thumb:hover {
-    background: #FFA500;
-}
-
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 1024px) {
-    .calendar-wrapper {
-        width: 95vw;
-        height: 75vh;
-        flex-direction: column;
-        gap: 15px;
-    }
+  .calendar-wrapper {
+    width: 95vw;
+    height: 75vh;
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-    .calendar-section {
-        flex: 1;
-    }
-
-    .contests-sidebar {
-        flex: 1;
-        max-height: 300px;
-    }
+  .contests-sidebar {
+    flex: 1;
+    max-height: 300px;
+  }
 }
 
 @media (max-width: 768px) {
-    .calendar-container {
-        padding: 15px;
-    }
-
-    .calendar-wrapper {
-        width: 98vw;
-        height: 80vh;
-        padding: 15px;
-        flex-direction: column;
-    }
-
-    .month-year {
-        font-size: 18px;
-        min-width: 160px;
-    }
-
-    .nav-button {
-        width: 30px;
-        height: 30px;
-        font-size: 12px;
-    }
-
-    .calendar-day {
-        font-size: 12px;
-    }
-
-    .day-header {
-        padding: 10px 6px;
-        font-size: 10px;
-    }
+  .calendar-container { padding: 0.8rem; }
+  .calendar-wrapper {
+    width: 98vw;
+    height: 80vh;
+    padding: 0.8rem;
+    flex-direction: column;
+  }
+  .month-year { font-size: 0.95rem; min-width: 160px; }
+  .nav-button { width: 28px; height: 28px; font-size: 0.75rem; }
+  .calendar-day { font-size: 0.75rem; }
+  .day-header { padding: 0.5rem 0.3rem; font-size: 0.6rem; }
 }
 
 @media (max-width: 480px) {
-    .calendar-wrapper {
-        width: 98vw;
-        height: 85vh;
-        padding: 12px;
-        flex-direction: column;
-    }
-
-    .month-year {
-        font-size: 16px;
-        min-width: 140px;
-    }
-
-    .calendar-day {
-        font-size: 11px;
-    }
-
-    .day-header {
-        padding: 8px 4px;
-        font-size: 9px;
-    }
+  .calendar-wrapper {
+    width: 98vw;
+    height: 85vh;
+    padding: 0.6rem;
+    flex-direction: column;
+  }
+  .month-year { font-size: 0.85rem; min-width: 140px; }
+  .calendar-day { font-size: 0.7rem; }
+  .day-header { padding: 0.4rem 0.2rem; font-size: 0.55rem; }
 }

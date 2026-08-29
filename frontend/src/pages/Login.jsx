@@ -1,4 +1,3 @@
-import logo from "../assets/logo-bg.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../styles/Login.css";
@@ -26,10 +25,10 @@ function LoginPage() {
         },
         body: JSON.stringify(data),
       });
-      const result = await response.json(); // Parse JSON response
+      const result = await response.json();
 
       if (response.ok) {
-        localStorage.setItem("jwtoken", result.token); // Store token from response
+        localStorage.setItem("jwtoken", result.token);
         navigate("/");
       } else {
         console.error("Login failed:", result.error);
@@ -43,39 +42,36 @@ function LoginPage() {
 
   return (
     <div className="App">
-      <div className="register-container">
-        <div>
-          <img src={logo} alt="Sholarseek Logo" className="logo" />
+      <div className="auth-container">
+        <div className="auth-brand">
+          <span className="brand-icon">&#9670;</span>
+          <h2>Code Guild</h2>
         </div>
-        <form id="login-form" onSubmit={formSubmitted} >
+        <p className="auth-subtitle">Welcome back! Sign in to continue.</p>
+        <form id="login-form" onSubmit={formSubmitted}>
           <div className="form-group">
-            <label htmlFor="username" className="form-label">
-              USERNAME
-            </label>
+            <label htmlFor="username" className="form-label">USERNAME</label>
             <input
               type="text"
               className="form-input"
               id="username"
               name="username"
-              placeholder="Username"
-              
+              placeholder="Enter your username"
               required
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password" className="form-label">
-              PASSWORD
-            </label>
+            <label htmlFor="password" className="form-label">PASSWORD</label>
             <input
               type={hide ? "password" : "text"}
               id="password"
               className="form-input"
               name="password"
-              placeholder="Password"
+              placeholder="Enter your password"
               required
             />
           </div>
-          <div className="checkbox-container" >
+          <div className="checkbox-container">
             <input
               type="checkbox"
               className="checkbox"
@@ -86,12 +82,12 @@ function LoginPage() {
               Show Password
             </label>
           </div>
-          <button type="Submit" className="login-button">
-            Login
+          <button type="submit" className="auth-button">
+            Sign In
           </button>
         </form>
       </div>
-      <div className="login-footer">
+      <div className="auth-footer">
         <p>
           Don't have an account? <a href="/register">Register</a>
         </p>

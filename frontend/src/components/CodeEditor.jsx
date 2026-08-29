@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import Editor from "@monaco-editor/react";
-import axios from "axios";
-import { LANGUAGE_VERSIONS, CODE_SNIPPETS } from "./constants";
+import { CODE_SNIPPETS } from "./constants";
 import LanguageSelector from "./LanguageSelector";
 import "./CodeEditor.css";
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 
 export default function CodeEditor({
   value,
@@ -14,6 +15,8 @@ export default function CodeEditor({
   onLanguageChange,
 }) {
   const [output, setOutput] = useState("");
+  const [isRunning, setIsRunning] = useState(false);
+  const [error, setError] = useState("");
   const valueRef = useRef(value);
   valueRef.current = value;
 
@@ -25,62 +28,104 @@ export default function CodeEditor({
   }, [language, onChange]);
 
   const runCode = async () => {
-    setOutput("Running...");
+    if (!value || !value.trim()) {
+      setError("No code to run.");
+      return;
+    }
+
+    setIsRunning(true);
+    setOutput("");
+    setError("");
+
     try {
-      const response = await axios.post(process.env.REACT_APP_JUDGE, {
-        language,
-        version: LANGUAGE_VERSIONS[language],
-        files: [{ content: value }],
-        stdin: inputValue,
+      const response = await fetch(`${BACKEND_URL}/api/execute`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          language,
+          code: value,
+          stdin: inputValue || "",
+        }),
       });
 
-      const { run } = response.data;
-      setOutput(run.output);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || `Server error (${response.status})`);
+      }
+
+      setOutput(data.output || "Program executed successfully.");
     } catch (err) {
-      setOutput("Error running code");
-      console.error(err);
+      console.error("Execution error:", err);
+      if (err.message.includes("Failed to fetch") || err.message.includes("NetworkError")) {
+        setError("Cannot connect to backend server.");
+        setOutput("Make sure the backend is running on port 5000.\n\nStart it with: cd backend && node index.js");
+      } else {
+        setError("Execution failed: " + err.message);
+        setOutput(err.message || "An error occurred while running the code.");
+      }
+    } finally {
+      setIsRunning(false);
     }
   };
 
   return (
     <div className="editor-container">
-      <h1 className="editor-heading">Online IDE</h1>
+      <div className="editor-top-bar">
+        <h1 className="editor-heading">Online IDE</h1>
+        <LanguageSelector language={language} setLanguage={onLanguageChange} />
+      </div>
 
-      <LanguageSelector
-        language={language}
-        setLanguage={onLanguageChange}
-      />
+      <div className="editor-wrapper">
+        <Editor
+          height="320px"
+          language={language === "cpp" ? "cpp" : language}
+          theme="vs-dark"
+          value={value}
+          onChange={onChange}
+          options={{
+            quickSuggestions: false,
+            suggestOnTriggerCharacters: false,
+            wordBasedSuggestions: false,
+            snippetsSuggestions: "none",
+            parameterHints: { enabled: false },
+            minimap: { enabled: false },
+            fontSize: 14,
+            fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
+            lineHeight: 1.6,
+            padding: { top: 12 },
+            scrollBeyondLastLine: false,
+            renderLineHighlight: "line",
+          }}
+        />
+      </div>
 
-      <Editor
-        height="300px"
-        language={language === "cpp" ? "cpp" : language}
-        theme="vs-dark"
-        value={value}
-        onChange={onChange}
-        options={{
-          // Disable autosuggestions
-          quickSuggestions: false,
-          suggestOnTriggerCharacters: false,
-          wordBasedSuggestions: false,
-          snippetsSuggestions: "none",
-          parameterHints: { enabled: false },
-        }}
-      />
+      <div className="io-section">
+        <div className="input-group">
+          <label className="io-label">Input</label>
+          <textarea
+            className="input-box"
+            rows="3"
+            placeholder="Enter standard input here..."
+            value={inputValue}
+            onChange={(e) => onInputChange(e.target.value)}
+          />
+        </div>
 
-      <textarea
-        className="input-box"
-        rows="4"
-        placeholder="Enter input here..."
-        value={inputValue}
-        onChange={(e) => onInputChange(e.target.value)}
-      />
+        <button
+          onClick={runCode}
+          className={`run-button ${isRunning ? "running" : ""}`}
+          disabled={isRunning}
+        >
+          {isRunning ? (<><span className="spinner"></span>Running...</>) : (<>▶ Run Code</>)}
+        </button>
+      </div>
 
-      <button onClick={runCode} className="run-button">
-        Run Code
-      </button>
-
-      <h2 className="output-heading">Output:</h2>
-      <pre className="output-box">{output}</pre>
+      <div className="output-section">
+        <label className="io-label">Output</label>
+        {error && <div className="error-banner">{error}</div>}
+        <pre className={`output-box ${error ? "has-error" : ""}`}>{output || "Output will appear here..."}</pre>
+      </div>
     </div>
   );
 }

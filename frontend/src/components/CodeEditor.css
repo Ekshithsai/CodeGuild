@@ -1,64 +1,157 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+/* ═══════════════════════════════════════════════════════
+   Code Guild – Code Editor Styles
+   ═══════════════════════════════════════════════════════ */
 
 .editor-container {
-  padding: 0 20px;
+  padding: 0 1rem;
   max-width: 900px;
   margin: 0 auto;
-  font-family: Arial, sans-serif;
-  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
+}
+
+.editor-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
 }
 
 .editor-heading {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #FFD700;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.editor-wrapper {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--highlight);
+}
+
+.editor-wrapper .monaco-editor {
+  border-radius: var(--radius-md);
+}
+
+/* ── Input/Output Section ── */
+.io-section {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-end;
+  margin-top: 0.8rem;
+}
+
+.input-group {
+  flex: 1;
+}
+
+.io-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.4rem;
 }
 
 .input-box {
   width: 100%;
-  min-height: 55px;
-  max-height: 75px;
-  margin-top: 10px;
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #FFD700;
-  border-radius: 4px;
-  background-color: #0a0a0a;
-  color: #ffffff;
+  min-height: 50px;
+  padding: 0.7rem;
+  font-size: 0.88rem;
+  font-family: 'JetBrains Mono', monospace;
+  border: 1px solid var(--highlight);
+  border-radius: var(--radius-sm);
+  background-color: var(--secondary-background);
+  color: var(--text-primary);
+  transition: var(--transition-normal);
+  resize: vertical;
+}
+
+.input-box:focus {
+  outline: none;
+  border-color: var(--primary-accent);
+  
+}
+
+.input-box::placeholder {
+  color: var(--text-muted);
 }
 
 .run-button {
-  margin-top: 10px;
-  padding: 10px 16px;
-  font-size: 16px;
-  background-color: #FFD700;
+  padding: 0.65rem 1.5rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  background: var(--primary-accent);
   border: none;
-  color: #000000;
+  color: #fff;
   cursor: pointer;
-  border-radius: 4px;
-  font-weight: 600;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-normal);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 42px;
 }
 
-.run-button:hover {
-  background-color: #FFA500;
+.run-button:hover:not(.running) {
+
 }
 
-.output-heading {
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #FFD700;
+.run-button.running {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Output ── */
+.output-section {
+  margin-top: 0.8rem;
+}
+
+.error-banner {
+  background: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
 .output-box {
-  background-color: #0a0a0a;
-  color: #ffffff;
-  min-height: 55px;
-  max-height: 80px;
-  padding: 12px;
-  border: 1px solid #333333;
-  border-radius: 4px;
+  background-color: var(--secondary-background);
+  color: var(--text-secondary);
+  min-height: 60px;
+  max-height: 150px;
+  padding: 0.8rem;
+  border: 1px solid var(--highlight);
+  border-radius: var(--radius-sm);
   white-space: pre-wrap;
-  overflow-y: scroll;
+  overflow-y: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  transition: var(--transition-normal);
+}
+
+.output-box.has-error {
+  border-color: rgba(239, 68, 68, 0.3);
 }

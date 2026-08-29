@@ -1,14 +1,13 @@
-import logo from '../assets/logo-bg.png'
-import '../styles/Register.css'
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import "../styles/Register.css";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function RegisterPage() {
   const [hide, setHide] = useState(true);
   const navigate = useNavigate();
   const togglePassword = () => {
     setHide(!hide);
-  }
+  };
   const backend = process.env.REACT_APP_BACKEND_URL;
 
   const formSubmitted = async (event) => { 
@@ -26,7 +25,7 @@ function RegisterPage() {
         },
         body: JSON.stringify(data),
       });
-        if (response.ok) {
+      if (response.ok) {
         alert('Registration successful!');
         navigate('/login'); 
       } else {
@@ -37,37 +36,38 @@ function RegisterPage() {
       console.error('Network error:', error);
       alert('Network error, please try again later.');
     }
-
   }
 
   return (
     <div className='App'>
-      <div className="register-container">
-        <div className="logo">
-              <img src={logo} alt="NXT Watch Logo" className="logo" />
+      <div className="auth-container">
+        <div className="auth-brand">
+          <span className="brand-icon">&#9670;</span>
+          <h2>Code Guild</h2>
         </div>
+        <p className="auth-subtitle">Create your account to get started.</p>
         <form id="register-form" onSubmit={formSubmitted}>
-            <div className="form-group">
-                <label htmlFor="username" className="form-label">USERNAME</label>
-                <input type="text" className="form-input" id="username" name="username" placeholder="Username" required />
-            </div>
-            <div className="form-group">
-                <label htmlFor="email" className="form-label">EMAIL</label>
-                <input type="email" className="form-input" id="email" name="email" placeholder="Email" required />
-            </div>
-            <div className="form-group">
-                <label htmlFor="password" className="form-label">PASSWORD</label>
-                <input type={hide ? "password" : "text"} id="passweord" className="form-input" name="password" placeholder="Password" required />
-            </div>
-            <div className="checkbox-container">
-                <input type="checkbox" className="checkbox" id="showpassword" onChange={togglePassword} />
-                <label htmlFor="showpassword" className="checkbox-label">Show Password</label>
-            </div>
-            <button type="Submit" className="register-button">Register</button>
+          <div className="form-group">
+            <label htmlFor="username" className="form-label">USERNAME</label>
+            <input type="text" className="form-input" id="username" name="username" placeholder="Choose a username" required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email" className="form-label">EMAIL</label>
+            <input type="email" className="form-input" id="email" name="email" placeholder="Enter your email" required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password" className="form-label">PASSWORD</label>
+            <input type={hide ? "password" : "text"} id="password" className="form-input" name="password" placeholder="Create a password" required />
+          </div>
+          <div className="checkbox-container">
+            <input type="checkbox" className="checkbox" id="showpassword" onChange={togglePassword} />
+            <label htmlFor="showpassword" className="checkbox-label">Show Password</label>
+          </div>
+          <button type="submit" className="auth-button">Create Account</button>
         </form>
       </div>
-      <div className="register-footer">
-        <p>Already have an account? <a href="/login">Login</a></p>
+      <div className="auth-footer">
+        <p>Already have an account? <a href="/login">Sign In</a></p>
       </div>
     </div>
   )

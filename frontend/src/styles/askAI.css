@@ -1,164 +1,248 @@
+/* ═══════════════════════════════════════════════════════
+   Code Guild – Ask AI Styles
+   ═══════════════════════════════════════════════════════ */
+
 .ask-ai-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  height: 80vh;
-  background-color: var(--secondary-background);
-  color: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+  height: calc(100vh - 80px);
+  background-color: var(--primary-background);
+  color: var(--text-primary);
 }
 
-.ask-ai-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
-.ask-ai-heading h1 { margin-top: 0.25rem; color: var(--primary-accent); }
-.context-badge { color: var(--secondary-accent); border: 1px solid var(--secondary-accent); padding: 0.35rem 0.55rem; border-radius: 4px; font-size: 0.78rem; }
-.context-summary { color: var(--text-secondary); border-left: 3px solid var(--primary-accent); padding: 0.6rem 0.75rem; margin: 1rem 0; }
-.quick-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
-.quick-actions button { background: transparent; border: 1px solid var(--highlight); color: var(--text-secondary); padding: 0.45rem 0.6rem; border-radius: 4px; cursor: pointer; }
-.quick-actions button:hover { border-color: var(--primary-accent); color: var(--primary-accent); }
-
-@media (max-width: 600px) {
-  .ask-ai-container { height: 84vh; padding: 1rem; }
-  .ask-ai-heading { flex-direction: column; }
-  .ask-ai-container .message-content { max-width: 92%; }
-  .ask-ai-container .message-form { flex-direction: column; }
+.ask-ai-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
 }
 
-.ask-ai-container .conversation {
+.ask-ai-heading h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-top: 0.25rem;
+  letter-spacing: -0.3px;
+}
+
+.context-badge {
+  color: var(--primary-accent);
+  border: 1px solid rgba(255, 107, 0, 0.2);
+  background: rgba(255, 107, 0, 0.08);
+  padding: 0.3rem 0.7rem;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.context-summary {
+  color: var(--text-muted);
+  border-left: 3px solid var(--primary-accent);
+  padding: 0.6rem 0.75rem;
+  margin: 0.5rem 0 1rem;
+  font-size: 0.9rem;
+}
+
+.eyebrow {
+  color: var(--primary-accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.quick-actions {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.quick-actions button {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  padding: 0.4rem 0.7rem;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 500;
+  transition: var(--transition-normal);
+}
+
+.quick-actions button:hover {
+  border-color: var(--primary-accent);
+  color: var(--primary-accent);
+  background: rgba(255, 107, 0, 0.05);
+}
+
+.conversation {
   flex: 1;
   overflow-y: auto;
-  margin-bottom: 20px;
-  padding: 15px;
-  background: #0a0a0a;
-  border-radius: 12px;
-  box-shadow: inset 0 0 10px rgba(255, 215, 0, 0.05);
+  margin-bottom: 1rem;
+  padding: 1.2rem;
+  background: var(--secondary-background);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
 }
 
-.ask-ai-container .message {
-  margin-bottom: 15px;
+.message {
+  margin-bottom: 1rem;
   display: flex;
 }
 
-.ask-ai-container .message.user {
+.message.user {
   justify-content: flex-end;
 }
 
-.ask-ai-container .message.ai {
+.message.ai {
   justify-content: flex-start;
 }
 
-.ask-ai-container .message-content {
+.message-content {
   max-width: 70%;
-  padding: 12px 18px;
-  border-radius: 18px;
+  padding: 0.8rem 1.2rem;
+  border-radius: var(--radius-lg);
   word-wrap: break-word;
-  font-size: 1rem;
-  line-height: 1.5;
-  box-shadow: 0 4px 8px rgba(255, 215, 0, 0.08);
+  font-size: 0.92rem;
+  line-height: 1.6;
 }
 
-.ask-ai-container .user .message-content {
+.user .message-content {
   background: var(--primary-accent);
-  color: #000000;
-  border-top-right-radius: 0;
+  color: #fff;
+  border-bottom-right-radius: 4px;
 }
 
-.ask-ai-container .ai .message-content {
-  background: #1a1a1a;
-  color: #f0f0f0;
-  border-top-left-radius: 0;
-  border: 1px solid var(--highlight);
+.ai .message-content {
+  background: var(--tertiary-background);
+  color: var(--text-secondary);
+  border-bottom-left-radius: 4px;
+  border: 1px solid var(--border-subtle);
 }
 
-.ask-ai-container .loading {
-  color: var(--secondary-accent);
-  font-style: italic;
-  text-align: center;
-}
-
-.ask-ai-container .message-form {
+.empty-chat {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  text-align: center;
+  padding: 2rem;
 }
 
-.ask-ai-container .message-form input {
+.loading {
+  color: var(--primary-accent);
+  font-style: italic;
+  font-size: 0.88rem;
+}
+
+.message-form {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.message-form input {
   flex: 1;
-  padding: 12px;
-  border: 2px solid var(--primary-accent);
-  border-radius: 10px;
-  background: #0a0a0a;
-  color: #ffffff;
-  font-size: 1rem;
-  transition: border 0.3s, background 0.3s;
+  padding: 0.8rem 1rem;
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--secondary-background);
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  transition: var(--transition-normal);
 }
 
-.ask-ai-container .message-form input:focus {
-  border-color: var(--secondary-accent);
-  background: #111111;
+.message-form input:focus {
+  border-color: var(--primary-accent);
   outline: none;
+  
 }
 
-.ask-ai-container .message-form button {
-  padding: 12px 20px;
+.message-form button {
+  padding: 0.8rem 1.5rem;
   background: var(--primary-accent);
-  color: #000000;
+  color: #fff;
   border: none;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   font-weight: 600;
+  font-size: 0.92rem;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  transition: var(--transition-normal);
 }
 
-.ask-ai-container .message-form button:hover {
-  background: var(--secondary-accent);
-  transform: translateY(-2px);
+.message-form button:hover {
+
 }
 
-.ask-ai-container .message-form button:disabled {
-  background: #333333;
-  color: #666666;
-  opacity: 0.6;
+.message-form button:disabled {
+  opacity: 0.4;
   cursor: not-allowed;
+  transform: none;
 }
 
 /* Markdown Styling */
-.ask-ai-container .react-markdown code {
-  background-color: #1a1a1a;
-  padding: 4px 6px;
+.react-markdown code {
+  background-color: rgba(255, 107, 0, 0.08);
+  padding: 2px 6px;
   border-radius: 4px;
   color: var(--primary-accent);
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
 }
 
-.ask-ai-container .react-markdown pre {
-  background-color: #0a0a0a;
-  padding: 14px;
-  border-radius: 10px;
+.react-markdown pre {
+  background-color: var(--primary-background);
+  padding: 1rem;
+  border-radius: var(--radius-md);
   overflow-x: auto;
-  color: #ffffff;
-  font-family: 'Roboto Mono', monospace;
-  border: 1px solid var(--highlight);
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+  border: 1px solid var(--border-subtle);
+  margin: 0.5rem 0;
 }
 
-.ask-ai-container .react-markdown pre code {
+.react-markdown pre code {
   background-color: transparent;
   padding: 0;
+  color: inherit;
 }
 
-.ask-ai-container .react-markdown ul,
-.ask-ai-container .react-markdown ol {
-  padding-left: 20px;
-  margin: 10px 0;
+.react-markdown ul,
+.react-markdown ol {
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
 }
 
-.ask-ai-container .react-markdown li {
-  margin-bottom: 6px;
+.react-markdown li {
+  margin-bottom: 0.3rem;
 }
 
-.ask-ai-container .react-markdown strong {
-  font-weight: bold;
+.react-markdown strong {
+  font-weight: 700;
   color: var(--primary-accent);
+}
+
+@media (max-width: 600px) {
+  .ask-ai-container {
+    height: calc(100vh - 80px);
+    padding: 1rem;
+  }
+
+  .ask-ai-heading {
+    flex-direction: column;
+  }
+
+  .message-content {
+    max-width: 88%;
+  }
+
+  .message-form {
+    flex-direction: column;
+  }
 }
