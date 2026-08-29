@@ -1,4 +1,4 @@
-# ⚡ CodeHGuild
+# ⚡ CodeGuild
 
 An interactive coding community platform to practice, collaborate, and level up your skills.
 ---
