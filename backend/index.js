@@ -85,7 +85,7 @@ app.get("/", (req, res) => {
   res.json({
     name: "Code Guild API",
     status: "running",
-    frontend: "http://localhost:3000",
+    frontend: process.env.FRONTEND_URL || "http://localhost:3000",
   });
 });
 
