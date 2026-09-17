@@ -41,7 +41,7 @@ CodeGuild is a place where you can solve coding problems, chat with others in re
 ### 1. Clone & install
 
 ```bash
-git clone https://github.com/Ekshithsai/ZCoder.git
+git clone https://github.com/Ekshithsai/CodeGuild.git
 cd ZCoder
 
 # Backend
@@ -87,7 +87,7 @@ Open [http://localhost:3000](http://localhost:3000) — you're good to go!
 ## Project Structure
 
 ```
-ZCoder/
+CodeGUild/
 ├── backend/
 │   ├── config/          # DB connection
 │   ├── middleware/       # Auth middleware
